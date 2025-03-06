@@ -16,8 +16,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: npm install and build webpack
-      - run: npm install
-      - run: npm build
+        run: npm install && npm build
   test:
     runs-on: ubuntu-latest
 
@@ -35,8 +34,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - name: npm install and test
-    - run: npm install
-    - run: npm test
+      run: npm install && npm test
       env:
         CI: true
         NODE_OPTIONS: --openssl-legacy-provider
