@@ -13,13 +13,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: set NODE_OPTIONS
-        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
-        
+      - uses: actions/checkout@v4        
       - name: npm install and build webpack
-        run: npm install && npm build webpack          
+        run: npm install && npm run build
+        env:
+          NODE_OPTION: --openssl-legacy-provider
   test:
     runs-on: ubuntu-latest
 
