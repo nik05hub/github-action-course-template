@@ -11,12 +11,15 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      
+      - name: set NODE_OPTIONS
+        run: echo "NODE_OPTIONS=--openssl-legacy-provider" >> $GITHUB_ENV
+        
       - name: npm install and build webpack
-        run: npm install && npm run build
+        run: npm install && npm build webpack          
   test:
     runs-on: ubuntu-latest
 
@@ -32,7 +35,7 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: ${{ matrix.node-version }}
-        cache: 'npm'
+        cache: 'npm'    
     - name: npm install and test
       run: npm install && npm test
       env:
