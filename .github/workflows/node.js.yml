@@ -9,17 +9,26 @@ on:
   pull_request:
     branches: [ "master" ]
 
-env:
-  NODE_OPTION: --openssl-legacy-provider
-
 jobs:
 
   build:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [20.x, 22.x]
+        os: [ubuntu-latest, windows-2019]
     steps:
-      - uses: actions/checkout@v4        
-      - name: npm install and build webpack
-        run: npm install && npm run build
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'   
+      - run: npm install
+      - run: npm run build
+        env:
+          NODE_OPTION: --openssl-legacy-provider
+      
   test:
     runs-on: ubuntu-latest
 
