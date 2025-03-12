@@ -30,7 +30,7 @@ jobs:
           NODE_OPTION: --openssl-legacy-provider --force
       - uses: actions/upload-artifact@master
         with:
-          name: webpack-artifacts-${{ matrix.node-version}}
+          name: webpack-artifacts-${{ matrix.node-version}}-${{ github.run_id }}
           path: public/
       
   test:
@@ -47,7 +47,7 @@ jobs:
     - uses: actions/checkout@v4
     - uses: actions/upload-artifact@master
       with:
-        name: webpack-artifacts-${{ matrix.node-version}}
+        name: webpack-artifacts-${{ matrix.node-version}}-${{ github.run_id }}
         path: public
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v4
