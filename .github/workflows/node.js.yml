@@ -30,7 +30,7 @@ jobs:
           NODE_OPTION: --openssl-legacy-provider --force
       - uses: actions/upload-artifact@master
         with:
-          name: webpack artifacts
+          name: webpack-artifacts-${{ matrix.node-version}}
           path: public/
       
   test:
