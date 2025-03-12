@@ -27,7 +27,7 @@ jobs:
       - run: npm install
       - run: npm run build
         env:
-          NODE_OPTION: --openssl-legacy-provider
+          NODE_OPTION: --openssl-legacy-provider --force
       
   test:
     runs-on: ubuntu-latest
