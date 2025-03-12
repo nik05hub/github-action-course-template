@@ -27,7 +27,12 @@ jobs:
       - run: npm install
       - run: npm run build
         env:
+          CI: true
           NODE_OPTION: --openssl-legacy-provider --force
+      - uses: actions/upload-artifact@master
+        with:
+          name: webpack artifacts
+          path: public/
       
   test:
     runs-on: ubuntu-latest
